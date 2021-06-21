@@ -1,0 +1,33 @@
+@startuml
+hide empty description
+[*] --> AuctionRunning : start
+End --> [*] : end
+Lost --> End : withdraw
+Winner --> End : win
+Withdraw --> AuctionRunning : withdraw
+state C_NoBids <<choice>>
+NoBids --> C_NoBids: bid
+C_NoBids --> HasBidded
+C_NoBids --> Withdraw
+
+state C_HasBidded <<choice>>
+HasBidded --> C_HasBidded: check_bid
+C_HasBidded --> HasBidded
+C_HasBidded --> Withdraw
+
+state C_HasBidded <<choice>>
+HasBidded --> C_HasBidded: has_ended
+C_HasBidded --> CheckWinner
+C_HasBidded --> HasBidded
+
+state C_AuctionRunning <<choice>>
+AuctionRunning --> C_AuctionRunning: has_ended
+C_AuctionRunning --> End
+C_AuctionRunning --> NoBids
+
+state C_CheckWinner <<choice>>
+CheckWinner --> C_CheckWinner: is_highest_bid
+C_CheckWinner --> Lost
+C_CheckWinner --> Winner
+
+@enduml

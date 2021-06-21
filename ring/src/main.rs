@@ -1,34 +1,61 @@
 fn main() {
-    let a = RingA::<SendA>::new(0);
-    let b = RingB::<RecvB>::new();
-    let c = RingB::<RecvB>::new();
-    let v = a.get_value();
-    let a = a.send();
-    let b = b.recv(v);
-    let v = b.get_value();
-    let b = b.send();
-    b.end();
-    let c = c.recv(v);
-    let v = c.get_value();
-    let c = c.send();
-    let a = a.recv(v);
-    c.end();
-    a.end();
+    let (a_sender, b_receiver) = channel::<i32>();
+    let (b_sender, c_receiver) = channel::<i32>();
+    let (c_sender, a_receiver) = channel::<i32>();
+
+    let a = RingA::<SendA>::new(0, a_sender, a_receiver);
+    let b = RingB::<RecvB>::new(b_sender, b_receiver);
+    let c = RingB::<RecvB>::new(c_sender, c_receiver);
+
+    vec![
+        thread::spawn(move || {
+            println!("a: {}", a.get_value());
+            let a = a.send();
+            let a = a.recv();
+            a.end();
+        }),
+        thread::spawn(move || {
+            let b = b.recv();
+            println!("b: {}", b.get_value());
+            let b = b.send();
+            b.end();
+        }),
+        thread::spawn(move || {
+            let c = c.recv();
+            println!("c: {}", c.get_value());
+            let c = c.send();
+            c.end();
+        }),
+    ]
+    .into_iter()
+    .map(|handle| handle.join())
+    .collect::<Result<_, _>>()
+    .unwrap()
 }
+
+use std::{
+    sync::mpsc::{channel, Receiver, Sender},
+    thread,
+};
 
 use ring_a::*;
 use ring_b::*;
 
 #[typestate::typestate]
 mod ring_a {
+    use std::sync::mpsc::{Receiver, Sender};
+
     #[automaton]
-    pub struct RingA;
+    pub struct RingA {
+        pub(crate) send: Sender<i32>,
+        pub(crate) receiver: Receiver<i32>,
+    }
 
     #[state]
     pub struct SendA(pub i32);
 
     pub trait SendA {
-        fn new(value: i32) -> SendA;
+        fn new(value: i32, send: Sender<i32>, receiver: Receiver<i32>) -> SendA;
         fn get_value(&self) -> i32;
         fn send(self) -> RecvA;
         fn end(self);
@@ -38,13 +65,15 @@ mod ring_a {
     pub struct RecvA;
 
     pub trait RecvA {
-        fn recv(self, value: i32) -> SendA;
+        fn recv(self) -> SendA;
     }
 }
 
 impl SendAState for RingA<SendA> {
-    fn new(value: i32) -> Self {
+    fn new(value: i32, send: Sender<i32>, receiver: Receiver<i32>) -> Self {
         Self {
+            send,
+            receiver,
             state: SendA(value),
         }
     }
@@ -54,26 +83,36 @@ impl SendAState for RingA<SendA> {
     }
 
     fn send(self) -> RingA<RecvA> {
-        RingA::<RecvA> { state: RecvA }
+        self.send.send(self.state.0).unwrap();
+        RingA::<RecvA> {
+            send: self.send,
+            receiver: self.receiver,
+            state: RecvA,
+        }
     }
 
     fn end(self) {}
 }
 
 impl RecvAState for RingA<RecvA> {
-    fn recv(self, value: i32) -> RingA<SendA> {
+    fn recv(self) -> RingA<SendA> {
+        let value = self.receiver.recv().unwrap();
         RingA::<SendA> {
+            send: self.send,
+            receiver: self.receiver,
             state: SendA(value),
         }
     }
-
-
 }
 
 #[typestate::typestate]
 mod ring_b {
+    use std::sync::mpsc::{Receiver, Sender};
     #[automaton]
-    pub struct RingB;
+    pub struct RingB {
+        pub(crate) send: Sender<i32>,
+        pub(crate) receiver: Receiver<i32>,
+    }
 
     #[state]
     pub struct SendB(pub i32);
@@ -87,8 +126,8 @@ mod ring_b {
     pub struct RecvB;
 
     pub trait RecvB {
-        fn new() -> RecvB;
-        fn recv(self, value: i32) -> SendB;
+        fn new(send: Sender<i32>, receiver: Receiver<i32>) -> RecvB;
+        fn recv(self) -> SendB;
         fn end(self);
     }
 }
@@ -99,16 +138,28 @@ impl SendBState for RingB<SendB> {
     }
 
     fn send(self) -> RingB<RecvB> {
-        RingB::<RecvB> { state: RecvB }
+        self.send.send(self.state.0).unwrap();
+        RingB::<RecvB> {
+            send: self.send,
+            receiver: self.receiver,
+            state: RecvB,
+        }
     }
 }
 
 impl RecvBState for RingB<RecvB> {
-    fn new() -> Self {
-        Self { state: RecvB }
+    fn new(send: Sender<i32>, receiver: Receiver<i32>) -> Self {
+        Self {
+            send,
+            receiver,
+            state: RecvB,
+        }
     }
-    fn recv(self, value: i32) -> RingB<SendB> {
+    fn recv(self) -> RingB<SendB> {
+        let value = self.receiver.recv().unwrap();
         RingB::<SendB> {
+            send: self.send,
+            receiver: self.receiver,
             state: SendB(value),
         }
     }

@@ -1,14 +1,10 @@
 use std::collections::HashMap;
 
-const LIMIT: u32 = 10;
-
 pub struct Auction {
     owner: String,
     bids: HashMap<String, u64>,
-    // since we dont have a timer
-    // we use a number of possible bids
-    remaining_bids: u32,
     highest_bid: u64,
+    ended: bool,
 }
 
 impl Auction {
@@ -16,8 +12,8 @@ impl Auction {
         Self {
             owner,
             bids: HashMap::new(),
-            remaining_bids: LIMIT,
             highest_bid: 0,
+            ended: false,
         }
     }
 
@@ -26,7 +22,7 @@ impl Auction {
             return None;
         }
         if !self.has_ended() {
-            self.remaining_bids -= 1;
+            self.ended = rand::random();
             self.bids.insert(client, bid);
             if self.highest_bid < bid {
                 self.highest_bid = bid;
@@ -49,6 +45,6 @@ impl Auction {
     }
 
     pub fn has_ended(&self) -> bool {
-        self.remaining_bids > 0
+        self.ended
     }
 }

@@ -55,13 +55,8 @@ mod auction_client_api {
     #[state]
     pub struct HasBidded;
     pub trait HasBidded {
-        fn check_bid(self) -> BidCheck;
+        fn check_bid(self) -> BidStatus;
         fn has_ended(self) -> AuctionEnded;
-    }
-
-    pub enum BidCheck {
-        HasBidded,
-        Withdraw,
     }
 
     pub enum AuctionEnded {
@@ -149,11 +144,11 @@ impl NoBidsState for Client<NoBids> {
 }
 
 impl HasBiddedState for Client<HasBidded> {
-    fn check_bid(self) -> BidCheck {
+    fn check_bid(self) -> BidStatus {
         if self.auction.is_highest_bid(&self.name) {
-            BidCheck::HasBidded(self)
+            BidStatus::HasBidded(self)
         } else {
-            BidCheck::Withdraw(Client::<Withdraw> {
+            BidStatus::Withdraw(Client::<Withdraw> {
                 name: self.name,
                 auction: self.auction,
                 state: Withdraw,
