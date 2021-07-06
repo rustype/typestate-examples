@@ -1,0 +1,17 @@
+@startuml
+hide empty description
+[*] --> Start : start
+Error --> [*] : end
+Authenticated --> [*] : end
+Authenticated : browse
+state C_CardPresent <<choice>>
+CardPresent --> C_CardPresent: authenticate
+C_CardPresent --> Error
+C_CardPresent --> Authenticated
+
+state C_Start <<choice>>
+Start --> C_Start: check_for_card
+C_Start --> Error
+C_Start --> CardPresent
+
+@enduml

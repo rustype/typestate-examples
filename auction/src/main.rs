@@ -38,6 +38,7 @@ mod auction_client_api {
 
     pub enum AuctionState {
         NoBids,
+        #[metadata(label="bidding closed")]
         End,
     }
 
@@ -48,7 +49,9 @@ mod auction_client_api {
     }
 
     pub enum BidStatus {
+        #[metadata(label="bid > previous")]
         HasBidded,
+        #[metadata(label="bid <= previous")]
         Withdraw,
     }
 

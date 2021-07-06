@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="680px" preserveAspectRatio="none" style="width:220px;height:680px;" version="1.1" viewBox="0 0 220 680" width="220px" zoomAndPan="magnify"><defs><filter height="300%" id="f1q82vu0gise5v" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><ellipse cx="51" cy="18" fill="#000000" filter="url(#f1q82vu0gise5v)" rx="10" ry="10" style="stroke: none; stroke-width: 1.0;"/><rect fill="#FEFECE" filter="url(#f1q82vu0gise5v)" height="40" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="50" x="26" y="107"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="32" x="35" y="132.432">Start</text><rect fill="#FEFECE" filter="url(#f1q82vu0gise5v)" height="40" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="50" x="6" y="522.5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="34" x="14" y="547.932">Error</text><ellipse cx="89" cy="659" fill="none" filter="url(#f1q82vu0gise5v)" rx="10" ry="10" style="stroke: #000000; stroke-width: 1.0;"/><ellipse cx="89.5" cy="659.5" fill="#000000" rx="6" ry="6" style="stroke: none; stroke-width: 1.0;"/><rect fill="#FEFECE" filter="url(#f1q82vu0gise5v)" height="55.412" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="115" x="91.5" y="515"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="91.5" x2="206.5" y1="544.0679" y2="544.0679"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="95" x="101.5" y="534.9659">Authenticated</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="41" x="96.5" y="561.896">browse</text><polygon fill="#FEFECE" filter="url(#f1q82vu0gise5v)" points="131,430,143,442,131,454,119,442,131,430" style="stroke: #A80036; stroke-width: 1.5;"/><rect fill="#FEFECE" filter="url(#f1q82vu0gise5v)" height="40" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="93" x="84.5" y="311"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="83" x="89.5" y="336.432">CardPresent</text><polygon fill="#FEFECE" filter="url(#f1q82vu0gise5v)" points="51,226,63,238,51,250,39,238,51,226" style="stroke: #A80036; stroke-width: 1.5;"/><!--MD5=[a0be3251f15ef50a7257de6fc99fd504]
+link *start to Start--><path d="M51,28.12 C51,44.29 51,78.45 51,101.81 " fill="none" id="*start-&gt;Start" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="51,106.92,55,97.92,51,101.92,47,97.92,51,106.92" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="28" x="52" y="72.897">start</text><!--MD5=[7748d72ab64101d2b173fcc1f57892c5]
+link Error to *end--><path d="M39.67,562.6 C46.75,577.98 57.16,600.06 67,619 C71.69,628.03 77.33,638.01 81.73,645.62 " fill="none" id="Error-&gt;*end" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="84.29,650.02,83.2284,640.2285,81.7786,645.6965,76.3107,644.2467,84.29,650.02" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="23" x="68" y="614.897">end</text><!--MD5=[5b3f495082bfa9e08b91fc93f0e4ed16]
+link Authenticated to *end--><path d="M135.08,570.06 C122.74,593.61 105.25,627 95.76,645.11 " fill="none" id="Authenticated-&gt;*end" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="93.3,649.79,101.0135,643.6661,95.6158,645.3586,93.9233,639.9609,93.3,649.79" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="23" x="120" y="614.897">end</text><!--MD5=[298e9aaf13b2ce69be4f2d6ded4a1a87]
+link CardPresent to C_CardPresent--><path d="M131,351.24 C131,372.13 131,405.14 131,424.77 " fill="none" id="CardPresent-&gt;C_CardPresent" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="131,429.93,135,420.93,131,424.93,127,420.93,131,429.93" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="76" x="132" y="395.897">authenticate</text><!--MD5=[e513bc0dc17de3c21c68562a89c4261a]
+link C_CardPresent to Error--><path d="M125.34,448.58 C111.92,461.79 77.59,495.6 54.27,518.58 " fill="none" id="C_CardPresent-&gt;Error" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="50.62,522.17,59.8336,518.6902,54.1769,518.656,54.2112,512.9992,50.62,522.17" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[214bda750b1b110259d833a2bba9ce74]
+link C_CardPresent to Authenticated--><path d="M132.73,452.44 C135.13,465.58 139.59,490.01 143.24,509.97 " fill="none" id="C_CardPresent-&gt;Authenticated" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="144.15,514.93,146.4682,505.3579,143.2518,510.0113,138.5983,506.795,144.15,514.93" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[b9eb313ed18d1e15da43ab433e367168]
+link Start to C_Start--><path d="M51,147.24 C51,168.13 51,201.14 51,220.77 " fill="none" id="Start-&gt;C_Start" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="51,225.93,55,216.93,51,220.93,47,216.93,51,225.93" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="89" x="52" y="191.897">check_for_card</text><!--MD5=[f36852400bb5d10aaa59c85a825e54b9]
+link C_Start to Error--><path d="M50.31,249.41 C47.48,292.17 36.72,454.93 32.61,517.13 " fill="none" id="C_Start-&gt;Error" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="32.26,522.48,36.8432,513.7625,32.5888,517.4908,28.8605,513.2364,32.26,522.48" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[f38ee31250f1c308aa4e0d9880c164b2]
+link C_Start to CardPresent--><path d="M56.25,244.97 C67.11,257.33 92.57,286.28 110.75,306.97 " fill="none" id="C_Start-&gt;CardPresent" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="114.06,310.73,111.1261,301.3283,110.7604,306.9733,105.1154,306.6076,114.06,310.73" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[f2d1ed4d51da0b6837fa338ea1e737f8]
+@startuml
+hide empty description
+[*] - -> Start : start
+Error - -> [*] : end
+Authenticated - -> [*] : end
+Authenticated : browse
+state C_CardPresent <<choice>>
+CardPresent - -> C_CardPresent: authenticate
+C_CardPresent - -> Error
+C_CardPresent - -> Authenticated
+
+state C_Start <<choice>>
+Start - -> C_Start: check_for_card
+C_Start - -> Error
+C_Start - -> CardPresent
+
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 10:22:07 WET 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 16.0.1+9-Ubuntu-1
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

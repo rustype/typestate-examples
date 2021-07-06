@@ -18,10 +18,7 @@ impl Auction {
     }
 
     pub fn bid(&mut self, client: String, bid: u64) -> Option<()> {
-        if self.owner == client {
-            return None;
-        }
-        if !self.has_ended() {
+        if self.owner != client && !self.has_ended() {
             self.ended = rand::random();
             self.bids.insert(client, bid);
             if self.highest_bid < bid {

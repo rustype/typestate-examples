@@ -7,5 +7,5 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-typestate = "*"
+typestate = { version="0.8.0-rc1", path="/home/jmgd/Documents/msc/rust-crates/typestate-rs", features=["export-dot", "export-plantuml"] }
 rand = "*"

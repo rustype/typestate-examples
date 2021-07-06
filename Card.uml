@@ -1,0 +1,16 @@
+@startuml
+hide empty description
+[*] --> Start : new
+Start --> [*] : disconnect
+Blocked --> [*] : disconnect
+Error --> [*] : disconnect
+Authenticated --> [*] : disconnect
+Error --> Start : retry
+Authenticated : browse
+state C_Start <<choice>>
+Start --> C_Start: perform_authentication
+C_Start --> Blocked
+C_Start --> Error
+C_Start --> Authenticated
+
+@enduml

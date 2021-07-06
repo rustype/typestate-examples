@@ -1,3 +1,22 @@
+use std::{
+    sync::mpsc::{channel, Receiver, Sender},
+    thread,
+};
+
+use ring_a::*;
+use ring_b::*;
+
+macro_rules! spawn_ring_b {
+    ($ring:ident) => {
+        thread::spawn(move || {
+            let $ring = $ring.recv();
+            println!("{}: {}", stringify!($ring), $ring.get_value());
+            let $ring = $ring.send();
+            $ring.end();
+        })
+    };
+}
+
 fn main() {
     let (a_sender, b_receiver) = channel::<i32>();
     let (b_sender, c_receiver) = channel::<i32>();
@@ -33,13 +52,7 @@ fn main() {
     .unwrap()
 }
 
-use std::{
-    sync::mpsc::{channel, Receiver, Sender},
-    thread,
-};
 
-use ring_a::*;
-use ring_b::*;
 
 #[typestate::typestate]
 mod ring_a {

@@ -1,0 +1,26 @@
+digraph Automata {
+  _initial_ [label="", fillcolor=black, fixedsize=true, height=0.25, style=filled, shape=circle];
+  _final_ [label="", fillcolor=black, fixedsize=true, height=0.25, style=filled, shape=doublecircle];
+  AuctionState [shape=diamond];
+  WinnerStatus [shape=diamond];
+  AuctionEnded [shape=diamond];
+  BidStatus [shape=diamond];
+  HasBidded -> AuctionEnded [label=has_ended];
+  HasBidded -> BidStatus [label=check_bid];
+  Lost -> End [label=withdraw];
+  End -> _final_ [label=end];
+  NoBids -> BidStatus [label=bid];
+  AuctionState -> NoBids;
+  AuctionState -> End [label=bidding closed];
+  Withdraw -> AuctionRunning [label=withdraw];
+  _initial_ -> AuctionRunning [label=start];
+  CheckWinner -> WinnerStatus [label=is_highest_bid];
+  Winner -> End [label=win];
+  BidStatus -> HasBidded [label=bid > previous];
+  BidStatus -> Withdraw [label=bid <= previous];
+  AuctionEnded -> HasBidded;
+  AuctionEnded -> CheckWinner;
+  WinnerStatus -> Lost;
+  WinnerStatus -> Winner;
+  AuctionRunning -> AuctionState [label=has_ended];
+}

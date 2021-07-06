@@ -1,0 +1,8 @@
+@startuml
+hide empty description
+[*] --> RecvB : new
+RecvB --> [*] : end
+SendB --> RecvB : send
+SendB : get_value
+RecvB --> SendB : recv
+@enduml

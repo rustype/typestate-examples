@@ -1,0 +1,32 @@
+@startuml
+state AuctionState <<choice>>
+state WinnerStatus <<choice>>
+state AuctionEnded <<choice>>
+state BidStatus <<choice>>
+state Withdraw
+state End
+state NoBids
+state HasBidded
+state CheckWinner
+state Lost
+state Winner
+state AuctionRunning
+HasBidded --> AuctionEnded : has_ended
+HasBidded --> BidStatus : check_bid
+Lost --> End : withdraw
+End --> [*] : end
+NoBids --> BidStatus : bid
+AuctionState --> NoBids
+AuctionState --> End : bidding closed
+Withdraw --> AuctionRunning : withdraw
+[*] --> AuctionRunning : start
+CheckWinner --> WinnerStatus : is_highest_bid
+Winner --> End : win
+BidStatus --> HasBidded : bid > previous
+BidStatus --> Withdraw : bid <= previous
+AuctionEnded --> HasBidded
+AuctionEnded --> CheckWinner
+WinnerStatus --> Lost
+WinnerStatus --> Winner
+AuctionRunning --> AuctionState : has_ended
+@end
